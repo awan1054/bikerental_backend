@@ -11,7 +11,7 @@ const transporter=nodemailer.createTransport({
     }
 
 })
- transporter.sendMail({
+ await transporter.sendMail({
     to:email,
     subject:"Regarding forgot password",
     text:"Hello, your request otp is"+otp
