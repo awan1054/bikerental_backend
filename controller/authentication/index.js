@@ -149,7 +149,7 @@ exports.resetPassword =async (req,res)=>{
 
     //otp verify, whwether yo otp xa ki xaina
 
-    const [data] = await user.find({otp : otp})
+    const [data] = await user.find({otp : otp})  //data first array ma xa [data destructuring ]
     if(!data){
         return res.status(404).json({
             message : "invlid otp"
