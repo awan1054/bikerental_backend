@@ -70,10 +70,10 @@ exports.loginuser = async (req, res) => {
 
                 var token = jwt.sign({
                     id: data[0]._id
-                }, process.env.JWT_SECRET_KEY,
+                }, process.env.Secret_key,
 
                     {
-                        expiresIn: process.env.JWT_EXP_IN
+                        expiresIn: process.env.JWT_EXPIRES_IN
                     })
 
 

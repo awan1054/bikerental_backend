@@ -16,6 +16,11 @@ const Schema=mongoose.Schema
     },
     otp:{
         type:Number
+    },
+    role:{
+        type:String,
+        enum:["admin","provider","customer"],
+        default:"customer"
     }
 })
 const user=mongoose.model("user",userSchema)// table banako user vannne ani column (userschema ) sanga connect gareko

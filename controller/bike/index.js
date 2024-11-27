@@ -2,6 +2,14 @@ const Bike = require("../../model/bikemodel")
 
 exports.addBike=async(req,res)=>{
     const{name,brand,price,description,category}=req.body
+    
+    let filename;
+    if(!req.file){
+        filename="https://www.google.com/url?sa=i&url=https%3A%2F%2Fphotogallery.indiatimes.com%2Fsports%2Fother-sports%2Ftop-15-sports-bikes-in-india%2Farticleshow%2F80452543.cms&psig=AOvVaw1QMNYe7bMgtXIj1S-_TmLm&ust=1732774148395000&source=images&cd=vfe&opi=89978449&ved=0CBQQjhxqFwoTCJjl2-7s-4kDFQAAAAAdAAAAABAE"
+    }
+    else{
+        filename=req.file.filename
+    }
     if(!name||!brand||!price||!description||!category){
         return res.status(404).json({
             message:"Please provide name,brand,price,catrgory,description"
@@ -12,7 +20,8 @@ exports.addBike=async(req,res)=>{
         brand,
         description,
         category,
-        price
+        price,
+        image:filename
     })
     res.status(404).json({
         message:"Bike added successfully"
