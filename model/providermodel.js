@@ -7,7 +7,7 @@ const providerSchema=new Schema({
     },
     contactNo:{
         type:String,
-        required:[true,"contact number must be provided"],
+        required:[true,"Contact number must be provided"],
         minlength:10,
         maxlength:10
     },

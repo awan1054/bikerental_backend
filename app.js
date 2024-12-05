@@ -6,39 +6,33 @@ const { addBike, getALLBikes, getBike, deleteBike, updateBike } = require("./con
 
 const app=express()
 connectTodb()
-const {multer,Storage}=require("./Services/multerConfig")
+
 const adminSeeder = require("./adminSeeder")
 const checkidLoginOrNot = require("./middleware/checkidLoginOrNot")
 const accessTo = require("./middleware/accessTo")
 
 const { getAlluser, deleteUser } = require("./controller/admin/admincontroller")
-const { becomeAprovider } = require("./controller/provider")
-const upload=multer({storage:Storage})
+const { becomeAprovider, changeProviderStatus } = require("./controller/provider")
+
+const userRoute=require("./routes/userRoutes")
+const bikeRoute=require("./routes/bikeroute")
+const adminRoute=require("./routes/adminRoute")
+const providerRoute=require("./routes/providerRoute")
 app.use(express.json())//incoming json data bujna sakna capability dinxa
 
-//register api
-app.post("/register",registeruser)
-app.post("/login",loginuser)
-app.post("/forgot_password",forgotPassword)
-app.post("/reset_password",resetPassword)
 
+//authentication api
+app.use("/user",userRoute)
 //bike api
-app.post("/add-bike",checkidLoginOrNot,accessTo("admin"),upload.single("image"),addBike)
-app.get("/get-bikes",getALLBikes)
-app.get("/get-single/:id",getBike)
-app.delete("/deletebike/:id",deleteBike)
-app.patch("/updatebike/:id",updateBike)
+app.use("/bike",bikeRoute)
 
 //admin api
-app.get("/admin/user",checkidLoginOrNot,accessTo("admin"),getAlluser)
-app.delete("/admin/user/:id",checkidLoginOrNot,accessTo("admin"),deleteUser)
+app.use("/admin",adminRoute)
 
 
 
 //provider api
-app.post("/provider/become",checkidLoginOrNot,accessTo("customer"),becomeAprovider)
-
-
+app.use("/provider",providerRoute)
 
 const port=process.env.port
 app.listen(port,()=>{

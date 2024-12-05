@@ -1,0 +1,13 @@
+const express=require("express")
+const {multer,Storage}=require("./../Services/multerConfig")
+const upload=multer({storage:Storage})
+const { addBike, getALLBikes, getBike, deleteBike, updateBike } = require("../controller/bike")
+const checkidLoginOrNot = require("../middleware/checkidLoginOrNot")
+const accessTo = require("../middleware/accessTo")
+const router=express.Router()
+router.route("/add-bike").post(checkidLoginOrNot,accessTo("admin"),upload.single("image"),addBike)
+router.route("/get-bikes").get(getALLBikes)
+router.route("/get-single/:id").get(getBike)
+router.route("/deletebike/:id").delete(deleteBike)
+router.route("/updatebike/:id").patch(updateBike)
+module.exports=router
