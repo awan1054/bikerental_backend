@@ -9,7 +9,7 @@ if(!token){
 }
 jwt.verify(token,process.env.Secret_key,async(err,result)=>{
     if(err){
-        res.status.json({
+        res.status(500).json({
             message:err
         })
     }

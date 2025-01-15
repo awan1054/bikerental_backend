@@ -109,12 +109,12 @@ exports.forgotPassword = async (req, res) => {
         var data = await user.find({ email: email })
         if (data.length === 0) {
             return res.status(404).json({
-                message: "no user register with this email"
+                message: "No user register with this email"
             })
         }
         if (!email) {
             res.status(400).json({
-                message: " plese peovid email"
+                message: " plese provide email"
             })
             return
         }

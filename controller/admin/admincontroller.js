@@ -23,3 +23,10 @@ exports.getAllProviderlist=async(req,res)=>{
         data
     })
 }
+exports.deleteProvider=async(req,res)=>{
+    const id=req.params.id
+    await Provider.findByIdAndDelete(id)
+    res.status(200).json({
+        message:"Provided deleted successfully"
+    })
+}

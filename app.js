@@ -13,6 +13,7 @@ const accessTo = require("./middleware/accessTo")
 
 const { getAlluser, deleteUser } = require("./controller/admin/admincontroller")
 const { becomeAprovider, changeProviderStatus } = require("./controller/provider")
+const cors = require("cors")
 
 const userRoute=require("./routes/userRoutes")
 const bikeRoute=require("./routes/bikeroute")
@@ -20,7 +21,9 @@ const adminRoute=require("./routes/adminRoute")
 const providerRoute=require("./routes/providerRoute")
 app.use(express.json())//incoming json data bujna sakna capability dinxa
 
-
+app.use(cors({
+    origin : "*"
+}))
 //authentication api
 app.use("/user",userRoute)
 //bike api
