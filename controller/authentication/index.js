@@ -103,8 +103,10 @@ exports.loginuser = async (req, res) => {
 
 
 exports.forgotPassword = async (req, res) => {
+   
     try {
         const { email } = req.body
+
 
         var data = await user.find({ email: email })
         if (data.length === 0) {

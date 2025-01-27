@@ -1,3 +1,4 @@
+const Bike = require("../../model/bikemodel")
 const Provider = require("../../model/providermodel")
 const user = require("../../model/userModel")
 
@@ -27,6 +28,22 @@ exports.deleteProvider=async(req,res)=>{
     const id=req.params.id
     await Provider.findByIdAndDelete(id)
     res.status(200).json({
-        message:"Provided deleted successfully"
+        message:"Providers deleted successfully"
+    })
+}
+
+exports.getAllBikes=async(req,res)=>{
+    const data=await Bike.find()
+    res.status(202).json({
+        message:"Bike fetched successfully",
+        data:data
+    })
+}
+
+exports.deleteBikes=async(req,res)=>{
+    const id=req.params.id
+    await Bike.findByIdAndDelete(id)
+    res.status(200).json({
+        message:"Providers deleted successfully"
     })
 }
