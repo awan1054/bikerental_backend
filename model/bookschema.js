@@ -27,14 +27,14 @@ const bookSchema=new Schema({
     },
   
     citizenship: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to the file stored in GridFS
+        type: String, // Reference to the file stored in GridFS
         required: true,
-        ref: 'Image', // Optional: Reference to an 'Image' model for additional metadata
+        // Optional: Reference to an 'Image' model for additional metadata
     },
-    license: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to the file stored in GridFS
+    licence: {
+        type: String,
         required: true,
-        ref: 'Image', // Optional: Reference to an 'Image' model for additional metadata
+        
     },
 
     status :{

@@ -42,6 +42,7 @@ app.use("/provider",providerRoute)
 app.use("/booknow",bookRoute)
 
 const port=process.env.port
+app.use(express.static("./storage"))
 app.listen(port,()=>{
 
     console.log("server backend has started at "+port)

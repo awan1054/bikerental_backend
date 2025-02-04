@@ -34,16 +34,16 @@ exports.getALLBikes=async(req,res)=>{
         data:data
     })
 }
-exports.getBike=async (req,res)=>{
-    const id=req.params.id
-    const data= await Bike.FindBYId(id)
-    res.status(200).json({
-        message:"Bike fetched successfully",
+// exports.getBike=async (req,res)=>{
+//     const id=req.params.id
+//     const data= await Bike.FindBYId(id)
+//     res.status(200).json({
+//         message:"Bike fetched successfully",
 
-        data:data
-    })
+//         data:data
+//     })
 
-}
+// }
 exports.getBike=async (req,res)=>{
     const id=req.params.id
     const data= await Bike.findById(id)
