@@ -18,12 +18,16 @@ const bikeshcema=new Schema({
         required:[true,"Bike description must be provided"]
         
     },
-    image: String,
+    image: {type:String,},
 category:{
     type:String,
     enum:["bike","scooter"],
     default:"bike"
-}
+}, 
+customerId:{
+ type:mongoose.Schema.Types.ObjectId,
+           ref:"user"
+},
 
 })
 const Bike=mongoose.model("Bike",bikeshcema)

@@ -20,6 +20,7 @@ const bikeRoute=require("./routes/bikeroute")
 const adminRoute=require("./routes/adminRoute")
 const providerRoute=require("./routes/providerRoute")
 const bookRoute=require("./routes/bookRoute")
+const contactRoute=require("./routes/contactRoute")
 app.use(express.json())//incoming json data bujna sakna capability dinxa
 
 app.use(cors({
@@ -40,6 +41,8 @@ app.use("/provider",providerRoute)
 
 //for booking
 app.use("/booknow",bookRoute)
+//for contact
+app.use("/contact",contactRoute)
 
 const port=process.env.port
 app.use(express.static("./storage"))

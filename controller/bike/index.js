@@ -21,7 +21,8 @@ exports.addBike=async(req,res)=>{
         description,
         category,
         price,
-        image:filename
+        image:filename,
+        customerId:req.user.id
     })
     res.status(404).json({
         message:"Bike added successfully"

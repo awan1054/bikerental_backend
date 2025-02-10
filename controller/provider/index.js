@@ -1,3 +1,5 @@
+const Bike = require("../../model/bikemodel")
+const book = require("../../model/bookschema")
 const Provider = require("../../model/providermodel")
 const user = require("../../model/userModel")
 
@@ -56,4 +58,48 @@ res.status(202).json({
             message:"Invalid status"
         })
     }
+}
+
+exports.getAllusers=async(req,res)=>{
+    const data=await user.find()
+    res.status(200).json({
+        message:"user fetched successfully",
+        data:data
+    })
+}
+
+exports.getAllBikesp=async(req,res)=>{
+    const data=await Bike.find()
+    res.status(202).json({
+        message:"Bike fetched successfully",
+        data:data
+    })
+}
+
+exports.findBookeduser=async(req,res)=>{
+    const data=await book.find().populate("bike")
+    res.status(202).json({
+        message:"booked users fetcched successfully",
+        data:data
+    })
+}
+
+exports.getbookeduser=async (req,res)=>{
+    const id=req.params.id
+    const data= await book.findById(id)
+    res.status(200).json({
+        message:"Booked user fetched successfully",
+
+        data:data
+    })
+}
+
+exports.deleteBookeduser=async (req,res)=>{
+    const id=req.params.id
+    const data= await book.findByIdAndDelete(id)
+    res.status(200).json({
+        message:"booked users  deleted successfully",
+
+        data:data
+    })
 }
