@@ -11,7 +11,7 @@ exports.registeruser = async (req, res) => {
         const { username, email, password } = req.body
         if (!username || !email || !password) {
             res.status(400).json({
-                message: "please provide info"
+                message: "please provide information"
             })
             return
         }
