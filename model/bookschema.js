@@ -36,11 +36,22 @@ const bookSchema=new Schema({
         required: true,
         
     },
-
+totalamount:{
+type:String,
+},
     status :{
         type: String,
         enum: ["pending","cancel","booked"],
         default : "pending"
+    },
+    paymentmethod:{
+type:String,
+enum:['cod','khalti']
+    },
+    paymentstatus:{
+        type: String,
+        enum:['pending','paid','unpaid'],
+        default:"pending"
     }
 })
 

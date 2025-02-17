@@ -116,7 +116,7 @@ exports.forgotPassword = async (req, res) => {
         }
         if (!email) {
             res.status(400).json({
-                message: " plese provide email"
+                message: " please provide email"
             })
             return
         }
@@ -125,7 +125,7 @@ exports.forgotPassword = async (req, res) => {
         data[0].otp = otp
         await data[0].save()
 
-        await sendMail(email, otp)
+     await   sendMail(email, "Regarding Forgot Password", "Hello, your request OTP is "+otp);
         res.status(200).json
             ({
                 message: "otp send success"

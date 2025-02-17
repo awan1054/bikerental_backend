@@ -1,5 +1,6 @@
 const nodemailer=require("nodemailer")
-async function sendMail(email,otp)
+// async function sendMail(email,otp)
+async function sendMail(email,subject,message)
 {
 //first configure nodemailer with our configuration
 
@@ -13,8 +14,8 @@ const transporter=nodemailer.createTransport({
 })
  await transporter.sendMail({
     to:email,
-    subject:"Regarding forgot password",
-    text:"Hello, your request otp is"+otp
+    subject,
+    text:message,
 })
 }
 module.exports=sendMail

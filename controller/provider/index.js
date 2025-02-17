@@ -2,6 +2,7 @@ const Bike = require("../../model/bikemodel")
 const book = require("../../model/bookschema")
 const Provider = require("../../model/providermodel")
 const user = require("../../model/userModel")
+const sendMail = require("../../Services/sendMail")
 
 exports.becomeAprovider=async(req,res)=>{
 try{
@@ -22,6 +23,7 @@ await Provider.create({
     panNo,
     customerId:customerId
 })
+ await sendMail(email, "Role Changed Notification", "Congratulations! Your role has been changed. You are now a provider.");
 res.status(202).json({
     message:"Your form has been submitted, please wait for admin response"
 })
