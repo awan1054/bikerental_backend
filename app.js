@@ -1,10 +1,17 @@
 require("dotenv").config()
+const mongoose=require("mongoose")
+
 const express=require("express")
-const connectTodb = require(".")
 const { registeruser, loginuser, forgotPassword, resetPassword } = require("./controller/authentication")
 const { addBike, getALLBikes, getBike, deleteBike, updateBike } = require("./controller/bike")
 
 const app=express()
+const connectTodb=async()=>{
+    await mongoose.connect(process.env.db_url)
+    console.log("trigerr")
+    console.log("database connected successfully")
+
+}
 connectTodb()
 
 const adminSeeder = require("./adminSeeder")
@@ -46,8 +53,8 @@ app.use("/contact",contactRoute)
 
 const port=process.env.port
 app.use(express.static("./storage"))
-app.listen(port,()=>{
+app.listen(port, ()=>{
 
     console.log("server backend has started at "+port)
-    adminSeeder()
+     adminSeeder()
 })

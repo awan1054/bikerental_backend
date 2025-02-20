@@ -52,6 +52,16 @@ enum:['cod','khalti']
         type: String,
         enum:['pending','paid','unpaid'],
         default:"pending"
+    },
+    fromdate:{
+        type:String,
+        required:true,
+
+    },
+    todate:{
+        type:String,
+        required:true,
+
     }
 })
 

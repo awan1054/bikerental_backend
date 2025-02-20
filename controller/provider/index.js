@@ -71,20 +71,38 @@ exports.getAllusers=async(req,res)=>{
 }
 
 exports.getAllBikesp=async(req,res)=>{
-    const data=await Bike.find()
+    console.log("triggered")
+    const data=await Bike.find({
+        customerId : req.user.id
+    })
+    
     res.status(202).json({
         message:"Bike fetched successfully",
         data:data
     })
 }
 
-exports.findBookeduser=async(req,res)=>{
-    const data=await book.find().populate("bike")
-    res.status(202).json({
-        message:"booked users fetcched successfully",
-        data:data
-    })
-}
+exports.findBookedUser = async (req, res) => {
+    console.log(req.user.id)
+    try {
+        const data = await book.find()
+            .populate({
+                path: "bike",
+                match: { customerId: req.user.id } // Only fetch bikes where customerId matches req.user.id
+            });
+
+        // Remove bookings where bike is null (means no match was found in populate)
+        const filteredData = data.filter(booking => booking.bike !== null);
+
+        res.status(202).json({
+            message: "Booked users fetched successfully",
+            data: filteredData
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching booked users", error: error.message });
+    }
+};
+
 
 exports.getbookeduser=async (req,res)=>{
     const id=req.params.id
